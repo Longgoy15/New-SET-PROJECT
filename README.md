@@ -1,22 +1,22 @@
-# ITE6 React Conversion
+# New-SET-PROJECT
 
-This is a Vite + React conversion of your original static site.
+## ITE6 React Conversion
 
-Quick start:
+This project is a Vite + React conversion of the original static website.
+
+### Quick Start
 
 1. Install dependencies
 
-```bash
 npm install
-```
 
-2. Run dev server
+2. Run development server
 
-```bash
 npm run dev
-```
 
-Notes:
-- The original `style.css` was copied into `src/style.css` and imported by the app.
-- Original JS activities were ported into `src/activities.js`. Each activity function receives a DOM container element and renders into it.
-- This initial conversion keeps behavior intact but uses direct DOM manipulation for activity rendering to match the original code quickly. I can further refactor activities into idiomatic React components if you want.
+### Notes
+
+- The original style.css was copied into src/style.css.
+- Original JavaScript activities were ported into src/activities.js.
+- Activity functions receive a DOM container element and render into it.
+- The initial conversion uses direct DOM manipulation for activity rendering.
