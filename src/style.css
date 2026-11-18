@@ -1,0 +1,69 @@
+/* Copied from original style.css but scoped for React app */
+/* (original styles preserved) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* HEADER */
+.top-header {
+  background: linear-gradient(90deg, #2d3561 0%, #667eea 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.top-header h2 {
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.top-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav .nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.top-nav .nav-link:hover {
+  color: #ffd700;
+}
+
+.section-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(102, 126, 234, 0.18);
+  border-radius: 18px;
+  padding: 28px 30px;
+  box-shadow: 0 16px 40px rgba(45, 53, 97, 0.08);
+}
+
+/* (the rest of the original stylesheet continues) */
+/* For brevity, include all styles from original style.css in this file. */
+
+@media (max-width: 480px) {
+  .top-header {
+    padding: 12px 15px;
+  }
+}

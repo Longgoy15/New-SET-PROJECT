@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSCS Activities - Programming Exercises</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header class="top-header">
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar menu">☰ Menu</button>
+  <h2>Bachelor of Science in Computer Science - Activities</h2>
+  <nav class="top-nav">
+    <ul>
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="layout">
+  <!-- anchor sections for header links -->
+  <div id="home" class="section-card" style="display:none;">
+    <h2>ANDREW WAYNE D. ALBANO</h2>
+    <p><strong>Address:</strong> Veriato, San Isidro, Northern Samar</p>
+    <h3>Education</h3>
+    <p><strong>Present:</strong> Northwest Samar State University
+      (Bachelor of Science in Computer Science., 2nd Year)</p>
+    <p><strong>Secondary:</strong> Veriato National High School (2018–2022)</p>
+    <p><strong>Primary:</strong> Veriato Elementary School (2013–2018)</p>
+    
+    <h3>Work Immersion Experience</h3>
+    <p>RackApp I.T. Solution, Purok 7, Carayman, Calbayog</p>
+    <ul>
+      <li>Assisted in basic computer troubleshooting and system checks.</li>
+      <li>Supported in software maintenance.</li>
+      <li>Helped in organizing digital files and updating records.</li>
+      <li>Gained hands-on exposure to I.T. operations and customer support.</li>
+    </ul>
+    <h3>Freelance Experience</h3>
+    <p>Freelance Photographer</p>
+    <ul>
+      <li>Captured photos for events, portraits, and school activities.</li>
+      <li>Edited images using basic photo-editing tools.</li>
+      <li>Managed client requests and delivered high-quality outputs.</li>
+    </ul>
+    <h3>Certificates / Qualifications</h3>
+    <p>CSS NC II Holder &ndash; National Certificate Level II accredited by
+      TESDA</p>
+  </div>
+  <div id="skills" class="section-card" style="display:none;">
+    <h2>Skills</h2>
+    <ul class="section-list">
+      <li>Computer Troubleshooting</li>
+      <li>Problem-Solving</li>
+      <li>Teamwork & Communication</li>
+      <li>Photography & Basic Photo Editing</li>
+    </ul>
+  </div>
+  <div id="contact" class="section-card" style="display:none;">
+    <h2>Contact</h2>
+    <p><strong>Phone:</strong> 09484780486</p>
+    <p><strong>Email:</strong> <a href="mailto:albanoandrew1@gmail.com">albanoandrew1@gmail.com</a></p>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <button id="sidebarClose" class="sidebar-close" aria-label="Close sidebar">×</button>
+    <div class="sidebar-panel">
+      <h3>Exercises</h3>
+      <ul class="exercise-menu" id="exerciseMenu"></ul>
+    </div>
+  </aside>
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <div id="contentBox" class="content-box">
+      <h2>Welcome</h2>
+      <p>Select an activity.</p>
+    </div>
+  </main>
+
+</div>
+<div class="footer">
+  <p>&copy; Andrew BSCS Activities</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
