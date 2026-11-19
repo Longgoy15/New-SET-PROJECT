@@ -21,6 +21,10 @@ function toggleSidebar() {
   sidebarOverlay?.classList.toggle('active');
 }
 
+function showWelcome(message = 'Select an activity.') {
+  contentBox.innerHTML = `<h2>Welcome</h2><p>${message}</p>`;
+}
+
 // Function to show a section based on the section ID from header navigation
 function showSection(sectionId) {
   // Kunin ang section element by its ID
@@ -505,6 +509,71 @@ const activities = {
         gradeEquivalent.textContent = '--';
         console.log('Form reset.');
       });
+    },
+    // Activity 2 for Exercise 4: Electricity bill calculator
+    2: function() {
+      contentBox.innerHTML = `<h1>Exercise 4 - Activity 2: Electricity Bill Calculator</h1>
+        <p>Enter the previous and current meter readings and the electricity rate to estimate your bill.</p>
+        <form id="electricityBillForm" class="panel-card" style="max-width: 500px;">
+          <div class="form-group">
+            <label for="previousReading" class="form-label">Previous meter reading (kWh):</label>
+            <input id="previousReading" type="number" min="0" step="any" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="currentReading" class="form-label">Current meter reading (kWh):</label>
+            <input id="currentReading" type="number" min="0" step="any" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="electricityRate" class="form-label">Electricity rate per kWh (pesos):</label>
+            <input id="electricityRate" type="number" min="0" step="any" required class="form-input">
+          </div>
+          <button type="submit" class="btn btn-primary">Calculate Bill</button>
+        </form>
+        <div id="electricityBillResult" class="result-box" style="display: none;" aria-live="polite"></div>`;
+
+      const form = document.getElementById('electricityBillForm');
+      const previousInput = document.getElementById('previousReading');
+      const currentInput = document.getElementById('currentReading');
+      const rateInput = document.getElementById('electricityRate');
+      const result = document.getElementById('electricityBillResult');
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const inputs = [previousInput, currentInput, rateInput];
+        if (inputs.some(input => input.value === '' || !Number.isFinite(input.valueAsNumber) || input.valueAsNumber < 0)) {
+          result.innerHTML = '<p role="alert">Enter valid non-negative numbers for all fields.</p>';
+          result.style.display = 'block';
+          return;
+        }
+
+        const previousReading = previousInput.valueAsNumber;
+        const currentReading = currentInput.valueAsNumber;
+        const ratePerKwh = rateInput.valueAsNumber;
+        if (currentReading < previousReading) {
+          result.innerHTML = '<p role="alert">Current meter reading cannot be lower than previous meter reading.</p>';
+          result.style.display = 'block';
+          return;
+        }
+
+        const consumption = currentReading - previousReading;
+        const totalBill = consumption * ratePerKwh;
+        if (!Number.isFinite(totalBill)) {
+          result.innerHTML = '<p role="alert">The calculated bill is too large to display.</p>';
+          result.style.display = 'block';
+          return;
+        }
+
+        const formatNumber = value => value.toLocaleString('en-US', { maximumFractionDigits: 12 });
+        const formatPesos = value => `₱${value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+        result.innerHTML = `<h3>Electricity Bill Estimate</h3>
+          <p>Previous meter reading: ${formatNumber(previousReading)} kWh</p>
+          <p>Current meter reading: ${formatNumber(currentReading)} kWh</p>
+          <p>Electricity consumption: ${formatNumber(consumption)} kWh</p>
+          <p>Rate per kWh: ${formatPesos(ratePerKwh)}</p>
+          <p><strong>Estimated total bill: ${formatPesos(totalBill)}</strong></p>`;
+        result.style.display = 'block';
+      });
     }
   }
 };
@@ -543,7 +612,6 @@ function selectActivity(actId) {
     // Ipakita ang default message kung activity hindi nahanap
     contentBox.innerHTML = '<p>Activity not found.</p>';
   }
-
   // Magdagdag ng exercise toggle functionality
   addExerciseToggle(actId);
 }
@@ -646,7 +714,7 @@ function toggleExerciseMenu(exerciseId) {
     currentExercise = null;
     clickedLink?.classList.remove('active');
     clickedSublist?.classList.remove('show');
-    contentBox.innerHTML = '<h2>Welcome</h2><p>Select an activity.</p>';
+    showWelcome();
     return;
   }
 
@@ -672,7 +740,7 @@ function displayActivity(exerciseId, activityId) {
 
   // Kung walang exercise o activity, ipakita ang welcome message
   if (!exerciseId || !activityId) {
-    contentBox.innerHTML = '<h2>Welcome</h2><p>Select an exercise and activity.</p>';
+    showWelcome('Select an exercise and activity.');
     return;
   }
 
@@ -685,7 +753,7 @@ function displayActivity(exerciseId, activityId) {
 // Initialize sa page load
 document.addEventListener('DOMContentLoaded', () => {
   // Itakda ang initial content
-  contentBox.innerHTML = '<h2>Welcome</h2><p>Select an activity.</p>';
+  showWelcome();
   buildExerciseMenu();
 
   // I-attach ang click listeners sa navigation links
@@ -702,6 +770,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', toggleSidebar);
+  }
+
+  const showActivityButton = document.getElementById('showActivity');
+  if (showActivityButton) {
+    showActivityButton.addEventListener('click', () => {
+      if (!sidebar?.classList.contains('open')) {
+        toggleSidebar();
+      }
+    });
   }
 
   if (sidebarClose) {
